@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+void check_insurance(char gender, int age, char marital_status) {
+    if (marital_status == 'M') {
+        printf("Insurance should be included.\n");
+    } else if (marital_status == 'U') {
+        if (age <= 30 && gender == 'M') {
+            printf("Insurance should not be included.\n");
+        } else if (age <= 25 && gender == 'F') {
+            printf("Insurance should not be included.\n");
+        } else if (age > 30 && (gender == 'M' || gender == 'F')) {
+            printf("Insurance should be included.\n");
+        } else {
+            printf("Invalid input.\n");
+        }
+    } else {
+        printf("Invalid input.\n");
+    }
+}
+
+int main() {
+    char gender;
+    int age;
+    char marital_status;
+
+    printf("Enter gender (M/F), age, and marital status (M/U): ");
+    if (scanf("%c %d %c", &gender, &age, &marital_status) != 3) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    marital_status = (marital_status == 'm' ? 'M' : (marital_status == 'u' ? 'U' : marital_status));
+
+    if (marital_status != '\0') {
+        check_insurance(gender, age, marital_status);
+    } else {
+        printf("Invalid input.\n");
+    }
+
+    return 0;
+}
